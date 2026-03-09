@@ -43,3 +43,8 @@ Note: This section is for stages 2 and beyond.
 - Block expressions (`let x = { ... };`) let you scope mutable variables. The `mut` binding lives and dies inside the block, and only the final value escapes. This is idiomatic Rust for keeping mutability contained — coming from Python/Java, think of it as a mini-function without the function
 - `unwrap()` panics on `Err`/`None`. Fine for exercises, but in production you'd use `?` or `match` to handle errors gracefully
 - `#[allow(unused_imports)]` suppresses compiler warnings — only use it intentionally. Rust's compiler warnings are your friend, especially as a beginner
+
+## Stage 2 — The REPL
+
+- `loop {}` is Rust's infinite loop — preferred over `while true` (the compiler warns against the latter). Coming from Python/Java, think `while True:` / `while (true)` but more idiomatic
+- `read_line()` returns `Ok(n)` where `n` is bytes read. On EOF it returns `Ok(0)` — worth checking later to break out of the loop gracefully
