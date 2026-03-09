@@ -35,3 +35,11 @@ Note: This section is for stages 2 and beyond.
    to CodeCrafters. Test output will be streamed to your terminal.
 
 # Rust Lessons Learned - Log
+
+## Stage 1 — Print prompt, read input, print "command not found"
+
+- `read_line()` includes the trailing `\n` in the string — always `.trim()` before using the input
+- `print!()` (no newline) doesn't flush stdout automatically. You must call `io::stdout().flush().unwrap()` to ensure the prompt appears before blocking on input. `println!()` flushes automatically on most systems, `print!()` does not
+- Block expressions (`let x = { ... };`) let you scope mutable variables. The `mut` binding lives and dies inside the block, and only the final value escapes. This is idiomatic Rust for keeping mutability contained — coming from Python/Java, think of it as a mini-function without the function
+- `unwrap()` panics on `Err`/`None`. Fine for exercises, but in production you'd use `?` or `match` to handle errors gracefully
+- `#[allow(unused_imports)]` suppresses compiler warnings — only use it intentionally. Rust's compiler warnings are your friend, especially as a beginner

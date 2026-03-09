@@ -1,4 +1,3 @@
-#[allow(unused_imports)]
 use std::io::{self, Write};
 
 fn main() {
@@ -6,7 +5,7 @@ fn main() {
     io::stdout().flush().unwrap();
     let command = {
         let mut line = String::new();
-        std::io::stdin().read_line(&mut line).unwrap();
+        io::stdin().read_line(&mut line).unwrap();
         line
     };
     println!("{}: command not found", command.trim());
