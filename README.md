@@ -54,3 +54,10 @@ Note: This section is for stages 2 and beyond.
 - Variable shadowing is idiomatic Rust: `let x = x.trim();` rebinds `x` as a `&str` over the original `String`. Unlike Python/Java where reusing a name feels wrong, Rust encourages it for type narrowing
 - `return` from `main()` exits with code 0. For explicit exit codes, use `std::process::exit(code)` — similar to `sys.exit()` in Python or `System.exit()` in Java
 - `==` on strings in Rust compares content, not references — no `.equals()` needed like in Java. Rust's `==` on `&str` and `String` just works
+
+## Stage 4 — Echo builtin
+
+- `strip_prefix("echo ")` returns `Some(&str)` with the remainder if the prefix matches, `None` otherwise — much simpler than regex for basic string parsing
+- `if let Some(x) = ...` is Rust's way of pattern matching and binding in one step — like a compact `match` with only one arm. Coming from Python, think `if (m := re.match(...)):`
+- Avoid pulling in crates (like `regex`) when the standard library has what you need. Rust's `str` methods (`strip_prefix`, `starts_with`, `splitn`, `trim`) cover most simple parsing
+- `Regex::new()` is expensive — if you do use regex, compile it once outside the loop, not on every iteration
