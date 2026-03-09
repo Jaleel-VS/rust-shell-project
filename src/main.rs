@@ -12,22 +12,12 @@ fn main() {
         };
         let command = command.trim();
 
-        if command.starts_with("echo") {
-            let words: Vec<&str> = Regex::new("^echo\\s").unwrap().split(command).collect();
-            if words.len() == 1 {
-                continue;
-            }
-            match words.get(1) {
-                Some(output) => {
-                    println!("{}", output);
-                    continue;
-                }
-                None => print!("Invalid use of command"),
-            }
+        if let Some(output) = command.strip_prefix("echo ") {
+            println!("{}", output);
         } else if command == "exit" {
             return;
+        } else {
+            println!("{}: command not found", command);
         }
-
-        println!("{}: command not found", command);
     }
 }
