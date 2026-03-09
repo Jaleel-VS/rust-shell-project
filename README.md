@@ -48,3 +48,9 @@ Note: This section is for stages 2 and beyond.
 
 - `loop {}` is Rust's infinite loop — preferred over `while true` (the compiler warns against the latter). Coming from Python/Java, think `while True:` / `while (true)` but more idiomatic
 - `read_line()` returns `Ok(n)` where `n` is bytes read. On EOF it returns `Ok(0)` — worth checking later to break out of the loop gracefully
+
+## Stage 3 — Exit builtin
+
+- Variable shadowing is idiomatic Rust: `let x = x.trim();` rebinds `x` as a `&str` over the original `String`. Unlike Python/Java where reusing a name feels wrong, Rust encourages it for type narrowing
+- `return` from `main()` exits with code 0. For explicit exit codes, use `std::process::exit(code)` — similar to `sys.exit()` in Python or `System.exit()` in Java
+- `==` on strings in Rust compares content, not references — no `.equals()` needed like in Java. Rust's `==` on `&str` and `String` just works

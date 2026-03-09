@@ -9,11 +9,12 @@ fn main() {
             io::stdin().read_line(&mut line).unwrap();
             line
         };
+        let command = command.trim();
 
-        if command.trim() == "exit" {
+        if command == "exit" {
             return;
         }
 
-        println!("{}: command not found", command.trim());
+        println!("{}: command not found", command);
     }
 }
