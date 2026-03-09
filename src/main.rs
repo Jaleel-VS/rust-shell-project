@@ -9,6 +9,11 @@ fn main() {
             io::stdin().read_line(&mut line).unwrap();
             line
         };
+
+        if command.trim() == "exit" {
+            return;
+        }
+
         println!("{}: command not found", command.trim());
     }
 }
