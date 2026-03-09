@@ -1,3 +1,4 @@
+use regex::Regex;
 use std::io::{self, Write};
 
 fn main() {
@@ -11,7 +12,19 @@ fn main() {
         };
         let command = command.trim();
 
-        if command == "exit" {
+        if command.starts_with("echo") {
+            let words: Vec<&str> = Regex::new("^echo\\s").unwrap().split(command).collect();
+            if words.len() == 1 {
+                continue;
+            }
+            match words.get(1) {
+                Some(output) => {
+                    println!("{}", output);
+                    continue;
+                }
+                None => print!("Invalid use of command"),
+            }
+        } else if command == "exit" {
             return;
         }
 
