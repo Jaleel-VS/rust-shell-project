@@ -18,7 +18,7 @@ fn main() {
             return;
         } else if let Some(output) = command.strip_prefix("type ") {
             if commands.contains(&output) {
-                println!("{}: is a shell builtin", output)
+                println!("{}:is a shell builtin", output)
             } else {
                 println!("{}: not found", output)
             }
