@@ -61,3 +61,8 @@ Note: This section is for stages 2 and beyond.
 - `if let Some(x) = ...` is Rust's way of pattern matching and binding in one step — like a compact `match` with only one arm. Coming from Python, think `if (m := re.match(...)):`
 - Avoid pulling in crates (like `regex`) when the standard library has what you need. Rust's `str` methods (`strip_prefix`, `starts_with`, `splitn`, `trim`) cover most simple parsing
 - `Regex::new()` is expensive — if you do use regex, compile it once outside the loop, not on every iteration
+
+## Stage 5 — Type builtin
+
+- Use a plain array (`["echo", "exit", "type"]`) instead of `vec![]` for static lists — no heap allocation, same `.contains()` API
+- `.contains(&arg)` needs the `&` because the array holds `&str` values, and `.contains()` expects a reference to the element type. So for `[&str]`, you pass `&&str`. Think of it as: the array has `&str`, and `.contains()` says "give me a reference to what I'm looking for" — so `&` of `&str` = `&&str`. Coming from Python/Java, there's no equivalent — those languages hide pointer indirection from you
